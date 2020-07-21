@@ -1,59 +1,57 @@
-package epamLastTask;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import java.util.*;
 interface Palindrome
-		{
-		  List palindromeList(List al);
-		}
+{
+  List<String> palindromeList(List<String> al);
+}
 
-		class StringParser
-		{
-		public static List findPalindrome(List l)
-		{
-		List<String> al=l;
-		List<String> resultlist=new ArrayList<String>();
-		for(int i=0;i<al.size();i++)
-		{
-		String s=al.get(i);
-		String reverse=new StringBuilder(s).reverse().toString();
-		if(s.equals(reverse))
-		{
-		resultlist.add(s);
-		}
-		else
-		{
-		al.remove(i);
-		}
-		}
-		return resultlist;
-		}
-		}
+class StringParser
+{
+public static List<String> findPalindrome(List<String> l)
+{
+List<String> al=l;
+List<String> resultlist=new ArrayList<String>();
+for(int i=0;i<al.size();i++)
+{
+String s=al.get(i);
+String reverse=new StringBuilder(s).reverse().toString();
+if(s.equals(reverse))
+{
+resultlist.add(s);
+}
+else
+{
+al.remove(i);
+}
+}
+return resultlist;
+}
+}
 
-		class printer
-		{
-		public void print(List al,Palindrome p)
-		{
-		al = p.palindromeList(al);
-		System.out.println("Palindromes In List Are :"+al);
-		}
-		}
+class MyPrinter
+{
+public void print(List<String> al,Palindrome p)
+{
+al = p.palindromeList(al);
+System.out.println("Palindromes In List Area :"+al);
+}
+}
 
-		 class StringPalindrome
-		{
-		public static void main(String[] args)
-		{
-		List<String> al=new ArrayList<String>();
-		al.add("mom");
-		al.add("dad");
-		al.add("sis");
-		al.add("bro");
-		al.add("friend");
-		printer p=new printer();
-		p.print(al,(StringParser::findPalindrome));
-		}
-
-
-	}
+public class StringPalindrome
+{
+public static void main(String[] args)
+{
+Scanner sc=new Scanner(System.in);
+List<String> al=new ArrayList<String>();
+System.out.println("enter the list size");
+int n =sc.nextInt();
+System.out.println("enter the elements in the list");
+for(int i=0;i<n;i++)
+{
+al.add(new Scanner(System.in).next());
+}
+MyPrinter mp=new MyPrinter();
+mp.print(al,(StringParser::findPalindrome));
+sc.close();
+}
+}
 
